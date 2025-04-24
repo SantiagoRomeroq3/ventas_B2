@@ -50,12 +50,12 @@ class CrudClients(ICrud):
         data = json_file.read()
         if any(c["dni"] == dni for c in data):
             gotoxy(10, 8)
-            print(red_color + "❌ Cliente ya existe" + reset_color)
+            print(red_color + " Cliente ya existe" + reset_color)
         else:
             data.append({"nombre": nombre, "apellido": apellido, "dni": dni})
             json_file.save(data)
             gotoxy(10, 8)
-            print(green_color + "✔ Cliente guardado exitosamente" + reset_color)
+            print(green_color + "Cliente guardado exitosamente" + reset_color)
         time.sleep(2)
 
     def update(self):
@@ -81,12 +81,12 @@ class CrudClients(ICrud):
                 client["apellido"] = input()
                 json_file.save(data)
                 gotoxy(10, 7)
-                print(green_color + "✔ Cliente actualizado" + reset_color)
+                print(green_color + "Cliente actualizado" + reset_color)
                 actualizado = True
                 break
         if not actualizado:
             gotoxy(10, 7)
-            print(red_color + "❌ Cliente no encontrado" + reset_color)
+            print(red_color + " Cliente no encontrado" + reset_color)
         time.sleep(2)
         borrarPantalla()
 
@@ -104,10 +104,10 @@ class CrudClients(ICrud):
         if len(nuevo) < len(data):
             json_file.save(nuevo)
             gotoxy(10, 4)
-            print(green_color + "✔ Cliente eliminado" + reset_color)
+            print(green_color + " Cliente eliminado" + reset_color)
         else:
             gotoxy(10, 4)
-            print(red_color + "❌ Cliente no encontrado" + reset_color)
+            print(red_color + " Cliente no encontrado" + reset_color)
         time.sleep(2)
 
     def consult(self):
@@ -149,14 +149,14 @@ class CrudProducts(ICrud):
         data = json_file.read()
         if any(p["id"] == id_ for p in data):
             gotoxy(10, 7)
-            print(red_color + "❌ Producto ya existe" + reset_color)
+            print(red_color + " Producto ya existe" + reset_color)
         else:
             data.append(
                 {"id": id_, "descripcion": descrip, "precio": preci, "stock": stock}
             )
             json_file.save(data)
             gotoxy(10, 7)
-            print(green_color + "✔ Producto guardado" + reset_color)
+            print(green_color + " Producto guardado" + reset_color)
         time.sleep(2)
 
     def update(self):
@@ -182,11 +182,11 @@ class CrudProducts(ICrud):
                 prod["stock"] = int(validar.solo_numeros("Error", 35, 6))
                 json_file.save(data)
                 gotoxy(10, 8)
-                print(green_color + "✔ Producto actualizado" + reset_color)
+                print(green_color + " Producto actualizado" + reset_color)
                 break
         else:
             gotoxy(10, 8)
-            print(red_color + "❌ Producto no encontrado" + reset_color)
+            print(red_color + " Producto no encontrado" + reset_color)
         time.sleep(2)
 
     def delete(self):
@@ -203,10 +203,10 @@ class CrudProducts(ICrud):
         if len(nuevo) < len(data):
             json_file.save(nuevo)
             gotoxy(10, 4)
-            print(green_color + "✔ Producto eliminado" + reset_color)
+            print(green_color + " Producto eliminado" + reset_color)
         else:
             gotoxy(10, 4)
-            print(red_color + "❌ Producto no encontrado" + reset_color)
+            print(red_color + " Producto no encontrado" + reset_color)
         time.sleep(2)
 
     def consult(self):
@@ -329,7 +329,7 @@ class CrudSales(ICrud):
         procesar = input().lower()
         if procesar == "s":
             gotoxy(15, 10 + line)
-            print("😊 Venta Grabada satisfactoriamente 😊" + reset_color)
+            print("Venta Grabada satisfactoriamente " + reset_color)
             # print(sale.getJson())
             json_file = JsonFile(path + "/archivos/invoices.json")
             invoices = json_file.read()
@@ -341,7 +341,7 @@ class CrudSales(ICrud):
             json_file.save(invoices)
         else:
             gotoxy(20, 10 + line)
-            print("🤣 Venta Cancelada 🤣" + reset_color)
+            print(" Venta Cancelada " + reset_color)
         time.sleep(2)
 
     def update(self):
@@ -374,12 +374,11 @@ class CrudSales(ICrud):
                     self.create()  # Reutilizamos create para volver a registrar
                 else:
                     gotoxy(10, 8)
-                    print("❌ Modificación cancelada")
+                    print("Modificación cancelada")
                 break
         else:
             gotoxy(10, 7)
-            print("❌ Factura no encontrada")
-
+            print("Factura no encontrada")
         time.sleep(2)
 
     def delete(self):
@@ -408,11 +407,11 @@ class CrudSales(ICrud):
                     print("🗑️ Venta eliminada correctamente")
                 else:
                     gotoxy(10, 8)
-                    print("❌ Eliminación cancelada")
+                    print("Eliminación cancelada")
                 break
         else:
             gotoxy(10, 7)
-            print("❌ Factura no encontrada")
+            print("Factura no encontrada")
 
         time.sleep(2)
 
